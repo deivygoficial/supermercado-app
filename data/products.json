@@ -1,0 +1,46 @@
+[
+  {
+    "_id": "65a1b2c3d4e5f6789012345",
+    "name": "Leche Entera",
+    "description": "Leche fresca de alta calidad",
+    "price": 3500,
+    "category": "lacteos",
+    "unit": "litro",
+    "image": "https://via.placeholder.com/300x200/4CAF50/ffffff?text=Leche",
+    "isActive": true,
+    "featured": true
+  },
+  {
+    "_id": "65a1b2c3d4e5f6789012346",
+    "name": "Pan Integral",
+    "description": "Pan fresco integral ideal para sandwich",
+    "price": 2800,
+    "category": "panaderia",
+    "unit": "unidad",
+    "image": "https://via.placeholder.com/300x200/FF9800/ffffff?text=Pan",
+    "isActive": true,
+    "featured": true
+  },
+  {
+    "_id": "65a1b2c3d4e5f6789012347",
+    "name": "Whisky Premium",
+    "description": "Whisky escocés de 18 años",
+    "price": 150000,
+    "category": "alcohol",
+    "unit": "botella",
+    "image": "https://via.placeholder.com/300x200/9C27B0/ffffff?text=Whisky",
+    "isActive": true,
+    "featured": true
+  },
+  {
+    "_id": "65a1b2c3d4e5f6789012348",
+    "name": "Cerveza Artesanal",
+    "description": "Cerveza artesanal local",
+    "price": 8000,
+    "category": "alcohol",
+    "unit": "lata",
+    "image": "https://via.placeholder.com/300x200/795548/ffffff?text=Cerveza",
+    "isActive": true,
+    "featured": false
+  }
+]
