@@ -9,31 +9,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Conexión a MongoDB con opciones correctas para Mongoose 6+
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI, {
-      maxPoolSize: 1, // Reducir a 1 conexión para Vercel
-      serverSelectionTimeoutMS: 10000, // 10 segundos
-      socketTimeoutMS: 30000, // 30 segundos
-      connectTimeoutMS: 10000, // 10 segundos
-      heartbeatFrequencyMS: 10000, // 10 segundos
-      retryWrites: true,
-      w: 'majority'
-    });
-    
-    console.log('✅ Conectado a MongoDB Atlas');
-    console.log('📊 Database:', conn.connection.name);
-    return conn;
-  } catch (error) {
-    console.error('❌ Error conectando a MongoDB:', error.message);
-    // No salir del proceso, solo loguear el error
-    return null;
-  }
-};
-
-// Conectar a la base de datos
-connectDB();
+// Conexión a MongoDB - versión ultra simplificada
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('✅ Conectado a MongoDB Atlas'))
+  .catch(err => console.error('❌ Error MongoDB:', err));
 
 // Rutas
 app.use('/api/auth', require('./routes/auth'));
