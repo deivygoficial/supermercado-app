@@ -9,13 +9,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Conexión a MongoDB optimizada para Vercel
+// Conexión a MongoDB con timeout y buffering controlado
 const connectDB = async () => {
   try {
-    // Deshabilitar buffering completamente
-    mongoose.set('bufferCommands', false);
-    mongoose.set('bufferMaxEntries', 0);
-    
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
       maxPoolSize: 1, // Reducir a 1 conexión para Vercel
       serverSelectionTimeoutMS: 10000, // 10 segundos
@@ -38,25 +34,8 @@ const connectDB = async () => {
   }
 };
 
-// Conectar a la base de datos y esperar conexión
-const dbConnection = connectDB();
-
-// Middleware para esperar conexión antes de procesar rutas
-const waitForDB = async (req, res, next) => {
-  try {
-    // Esperar a que la conexión esté lista
-    if (mongoose.connection.readyState !== 1) {
-      await dbConnection;
-    }
-    next();
-  } catch (error) {
-    console.error('Error de conexión:', error);
-    res.status(500).json({ message: 'Error de conexión a la base de datos' });
-  }
-};
-
-// Aplicar middleware a todas las rutas API
-app.use('/api', waitForDB);
+// Conectar a la base de datos
+connectDB();
 
 // Rutas
 app.use('/api/auth', require('./routes/auth'));
