@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Conexión a MongoDB con timeout y buffering controlado
+// Conexión a MongoDB con opciones correctas para Mongoose 6+
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
@@ -19,9 +19,7 @@ const connectDB = async () => {
       connectTimeoutMS: 10000, // 10 segundos
       heartbeatFrequencyMS: 10000, // 10 segundos
       retryWrites: true,
-      w: 'majority',
-      bufferMaxEntries: 0, // Sin buffering
-      bufferCommands: false // Sin buffering de comandos
+      w: 'majority'
     });
     
     console.log('✅ Conectado a MongoDB Atlas');
